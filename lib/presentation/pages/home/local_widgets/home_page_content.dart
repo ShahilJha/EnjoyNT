@@ -2,13 +2,15 @@ import 'package:enjoy_nt/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../routes/router.dart';
 import '../../../widgets/app_search_bar.dart';
 import '../../../widgets/category_round_tile.dart';
 import '../../../widgets/item_tile.dart';
 import '../../../widgets/list_content_template.dart';
 
 class HomePageContent extends StatelessWidget {
-  const HomePageContent({super.key});
+  final VoidCallback onTap;
+  const HomePageContent({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +68,17 @@ class HomePageContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const ListContentTemplate(
+          ListContentTemplate(
             title: 'Categories',
-            seeAllRoute: '',
-            child: SizedBox(
+            onTap: onTap,
+            child: const SizedBox(
               height: 100,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CategoryRoundTile(
                     title: 'Jobs',
-                    routeLink: '',
+                    routeLink: rJobListPage,
                     imageUrl: 'assets/icons/jobs.png',
                   ),
                   CategoryRoundTile(
@@ -100,7 +102,7 @@ class HomePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Popular Destination',
-            seeAllRoute: '',
+            onTap: () {},
             child: SizedBox(
               height: 155,
               child: ListView(
@@ -122,7 +124,7 @@ class HomePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Popular Events',
-            seeAllRoute: '',
+            onTap: () {},
             child: SizedBox(
               height: 155,
               child: ListView(
@@ -144,7 +146,7 @@ class HomePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Jobs Available',
-            seeAllRoute: '',
+            onTap: () {},
             child: SizedBox(
               height: 155,
               child: ListView(

@@ -90,7 +90,7 @@ class ProfilePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Recent Activities',
-            seeAllRoute: '',
+            onTap: () {},
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(
                 horizontal: 0,

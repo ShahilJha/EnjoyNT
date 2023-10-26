@@ -7,13 +7,13 @@ class ListContentTemplate extends StatelessWidget {
   final String title;
   final EdgeInsets padding;
   final EdgeInsets margin;
-  final String seeAllRoute;
+  final VoidCallback onTap;
 
   const ListContentTemplate({
     super.key,
     required this.child,
     required this.title,
-    required this.seeAllRoute,
+    required this.onTap,
     this.padding = const EdgeInsets.symmetric(horizontal: 25),
     this.margin = const EdgeInsets.symmetric(vertical: 23),
   });
@@ -37,7 +37,7 @@ class ListContentTemplate extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => context.router.pushNamed(seeAllRoute),
+                onTap: onTap,
                 child: const Text(
                   'See all',
                   style: TextStyle(

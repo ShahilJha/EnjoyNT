@@ -26,7 +26,11 @@ class _HomePageScaffoldState extends State<HomePageScaffold> {
         return const ProfilePage();
       case 0:
       default:
-        return const HomePageContent();
+        return HomePageContent(
+          onTap: () => setState(() {
+            _currentIndex = 1;
+          }),
+        );
     }
   }
 

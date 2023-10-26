@@ -8,8 +8,8 @@ abstract class PackageInjectableModule {
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 
-  @lazySingleton
-  @preResolve
+  @singleton
+  // @preResolve
   Algolia get algolia => const Algolia.init(
         applicationId: 'JD88YGON0U',
         apiKey: '015d67e7b78d3db34fb2466216aaa3bc',

@@ -68,12 +68,13 @@ class CategoryListScaffold extends StatelessWidget {
                 itemCount: _tileData.length,
                 itemBuilder: (context, index) {
                   // final data = _tileData[index];
-                  return const AppDefaultTile(
+                  return AppDefaultTile(
                     title: 'IT code fair',
                     subTitle: 'Charles Darwin University',
                     detail: 'Hilton Hotel, Darwin CBD, 0800, NT, Australia',
                     imageLink: '',
                     bookmarked: false,
+                    onTap: () {},
                   );
                 },
               ),
