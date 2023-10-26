@@ -41,5 +41,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(const AuthState.unauthenticated());
       },
     );
+
+    on<DeactivateAccount>(
+      (event, emit) async {
+        await _authFacade.signOutUser();
+        emit(const AuthState.unauthenticated());
+      },
+    );
   }
 }

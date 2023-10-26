@@ -59,7 +59,7 @@ class DeactivateAccountPageScaffold extends StatelessWidget {
                 textString: 'Deactivate',
                 margin: const EdgeInsets.all(0),
                 color: kTileDeleteButtonColor,
-                onPressed: () {},
+                onPressed: () async {},
               ),
             ],
           ),

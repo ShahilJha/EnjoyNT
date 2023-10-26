@@ -122,4 +122,9 @@ class FirebaseAuthFacade implements IAuthFacade {
         _firebaseAuth.signOut(),
         _googleSignIn.signOut(),
       ]);
+
+  @override
+  Future<void> deactivateUser() => Future.wait([
+        _firebaseAuth.currentUser!.delete(),
+      ]);
 }
