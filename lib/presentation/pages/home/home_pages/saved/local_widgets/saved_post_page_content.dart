@@ -1,3 +1,5 @@
+import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/utils/utilities.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../widgets/app_default_tile.dart';
@@ -70,7 +72,9 @@ class SavedPostPageContent extends StatelessWidget {
                   detail: 'Hilton Hotel, Darwin CBD, 0800, NT, Australia',
                   imageLink: '',
                   bookmarked: false,
-                  onTap: () {},
+                  onTap: () {
+                    getIt<Utilities>().showSnackBar(text: 'In Development....');
+                  },
                 );
               },
             ),
