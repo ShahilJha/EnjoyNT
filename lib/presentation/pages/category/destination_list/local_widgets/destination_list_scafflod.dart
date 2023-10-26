@@ -7,8 +7,8 @@ import '../../../../../domain/firestore_data/i_firestore_data_facade.dart';
 import '../../../../widgets/app_default_tile.dart';
 import '../../../../widgets/app_search_bar.dart';
 
-class JobListScaffold extends StatelessWidget {
-  JobListScaffold({super.key});
+class DestinationListScaffold extends StatelessWidget {
+  DestinationListScaffold({super.key});
 
   final List _tileData = [
     {
@@ -45,7 +45,7 @@ class JobListScaffold extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
               child: Text(
-                'Jobs',
+                'Saved',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 24,
@@ -64,8 +64,9 @@ class JobListScaffold extends StatelessWidget {
             // ),
             // const SizedBox(height: 25),
             StreamBuilder(
-                stream:
-                    getIt<FirebaseFirestore>().collection('jobs').snapshots(),
+                stream: getIt<FirebaseFirestore>()
+                    .collection('destination')
+                    .snapshots(),
                 builder: (context, snapshot) {
                   print(snapshot);
                   if (!snapshot.hasData) {
@@ -87,10 +88,10 @@ class JobListScaffold extends StatelessWidget {
                           // <DocumentSnapshot> items = snapshot.data?.documents;
                           final data = snapshot.data?.docs[index].data();
                           return AppDefaultTile(
-                            title: data?["job_title"],
-                            subTitle: '\$${data?["job_salary"]}',
-                            detail: data?["job_location"],
-                            imageLink: data?["job_image"],
+                            title: data?["destination_name"],
+                            subTitle: '\$${data?["destination_cost"]}',
+                            detail: data?["destination_location"],
+                            imageLink: data?["destination_image"],
                             bookmarked: false,
                             onTap: () {},
                           );

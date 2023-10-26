@@ -82,13 +82,13 @@ class HomePageContent extends StatelessWidget {
                     imageUrl: 'assets/icons/jobs.png',
                   ),
                   CategoryRoundTile(
-                    title: 'Food',
-                    routeLink: '',
-                    imageUrl: 'assets/icons/food.png',
+                    title: 'Organization',
+                    routeLink: rOraganizationListPage,
+                    imageUrl: 'assets/icons/markets.png',
                   ),
                   CategoryRoundTile(
-                    title: 'Tours',
-                    routeLink: '',
+                    title: 'Destination',
+                    routeLink: rDestinationListPage,
                     imageUrl: 'assets/icons/tours.png',
                   ),
                   CategoryRoundTile(

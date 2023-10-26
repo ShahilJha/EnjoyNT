@@ -58,7 +58,15 @@ class AppDefaultTile extends StatelessWidget {
                               ?.copyWith(color: Colors.white),
                         ),
                       )
-                    : Image.network(imageLink),
+                    : ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(24),
+                        ),
+                        child: Image.network(
+                          imageLink,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
               ),
             ),
             Expanded(
@@ -74,17 +82,20 @@ class AppDefaultTile extends StatelessWidget {
                       title,
                       style: Theme.of(context).textTheme.bodyLarge,
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                     Text(
                       subTitle,
                       style: Theme.of(context).textTheme.bodySmall,
                       overflow: TextOverflow.fade,
+                      maxLines: 1,
                     ),
                     const SizedBox(height: 13),
                     Text(
                       detail,
                       style: Theme.of(context).textTheme.bodySmall,
                       overflow: TextOverflow.fade,
+                      maxLines: 1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,

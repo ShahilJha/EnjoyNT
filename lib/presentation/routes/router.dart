@@ -15,6 +15,8 @@ const rPrivacyPolicy = '/privacyPolicy';
 const rOnBoarding = '/onBoarding';
 const rItemDetailPage = '/itemdetail';
 const rJobListPage = '/jobListPage';
+const rDestinationListPage = '/destinationListPage';
+const rOraganizationListPage = '/organizationListPage';
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends $AppRouter {
@@ -36,6 +38,9 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rOnBoarding, page: OnBoardingRoute.page),
         AutoRoute(path: rHome, page: HomeRoute.page),
         AutoRoute(path: rJobListPage, page: JobListRoute.page),
+        AutoRoute(path: rDestinationListPage, page: DestinationListRoute.page),
+        AutoRoute(
+            path: rOraganizationListPage, page: OraganizationListRoute.page),
       ];
 }  
 
