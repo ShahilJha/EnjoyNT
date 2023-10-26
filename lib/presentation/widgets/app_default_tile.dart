@@ -42,7 +42,7 @@ class AppDefaultTile extends StatelessWidget {
                 height: 140,
                 width: 140,
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent.withOpacity(0.05),
+                  color: Colors.blueAccent.withOpacity(0.04),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(24),
                   ),
@@ -64,7 +64,7 @@ class AppDefaultTile extends StatelessWidget {
                         ),
                         child: Image.network(
                           imageLink,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
               ),
@@ -97,22 +97,22 @@ class AppDefaultTile extends StatelessWidget {
                       overflow: TextOverflow.fade,
                       maxLines: 1,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            bookmarked
-                                ? Icons.bookmark
-                                : Icons.bookmark_outline,
-                            color: Theme.of(context).colorScheme.primary,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 13)
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     IconButton(
+                    //       onPressed: () {},
+                    //       icon: Icon(
+                    //         bookmarked
+                    //             ? Icons.bookmark
+                    //             : Icons.bookmark_outline,
+                    //         color: Theme.of(context).colorScheme.primary,
+                    //         size: 24,
+                    //       ),
+                    //     ),
+                    //     const SizedBox(width: 13)
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

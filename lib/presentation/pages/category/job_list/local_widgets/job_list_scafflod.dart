@@ -88,7 +88,7 @@ class JobListScaffold extends StatelessWidget {
                           final data = snapshot.data?.docs[index].data();
                           return AppDefaultTile(
                             title: data?["job_title"],
-                            subTitle: '\$${data?["job_salary"]}',
+                            subTitle: 'Salary: \$${data?["job_salary"]}',
                             detail: data?["job_location"],
                             imageLink: data?["job_image"],
                             bookmarked: false,

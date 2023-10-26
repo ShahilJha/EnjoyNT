@@ -3,12 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../domain/firestore_data/i_firestore_data_facade.dart';
 import '../../../../widgets/app_default_tile.dart';
 import '../../../../widgets/app_search_bar.dart';
 
-class DestinationListScaffold extends StatelessWidget {
-  DestinationListScaffold({super.key});
+class HotelListScaffold extends StatelessWidget {
+  HotelListScaffold({super.key});
 
   final List _tileData = [
     {
@@ -45,7 +44,7 @@ class DestinationListScaffold extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
               child: Text(
-                'Destinations',
+                'Events',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 24,
@@ -64,11 +63,9 @@ class DestinationListScaffold extends StatelessWidget {
             // ),
             // const SizedBox(height: 25),
             StreamBuilder(
-                stream: getIt<FirebaseFirestore>()
-                    .collection('destination')
-                    .snapshots(),
+                stream:
+                    getIt<FirebaseFirestore>().collection('hotel').snapshots(),
                 builder: (context, snapshot) {
-                  print(snapshot);
                   if (!snapshot.hasData) {
                     return Center(
                       child: CircularProgressIndicator(
@@ -88,10 +85,10 @@ class DestinationListScaffold extends StatelessWidget {
                           // <DocumentSnapshot> items = snapshot.data?.documents;
                           final data = snapshot.data?.docs[index].data();
                           return AppDefaultTile(
-                            title: data?["destination_name"],
-                            subTitle: 'Cost: \$${data?["destination_cost"]}',
-                            detail: data?["destination_location"],
-                            imageLink: data?["destination_image"],
+                            title: data?["event_name"],
+                            subTitle: 'Hotel cost: \$${data?["hotel_price"]}',
+                            detail: data?["hotel_location"],
+                            imageLink: data?["hotel_room_photo"],
                             bookmarked: false,
                             onTap: () {},
                           );
