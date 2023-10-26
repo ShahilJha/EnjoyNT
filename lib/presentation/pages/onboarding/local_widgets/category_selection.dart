@@ -49,18 +49,26 @@ class CategorySelection extends StatelessWidget {
                   OnBoardTile(
                     imageUrl: 'assets/images/image5.png',
                     title: 'Jobs',
+                    color: Theme.of(context).colorScheme.background,
+                    onTap: () {},
                   ),
                   OnBoardTile(
                     imageUrl: 'assets/images/image6.png',
                     title: 'Tours',
+                    color: Theme.of(context).colorScheme.background,
+                    onTap: () {},
                   ),
                   OnBoardTile(
                     imageUrl: 'assets/images/image7.png',
                     title: 'Hotels/Restaurants',
+                    color: Theme.of(context).colorScheme.background,
+                    onTap: () {},
                   ),
                   OnBoardTile(
                     imageUrl: 'assets/images/image8.png',
                     title: 'Events',
+                    color: Theme.of(context).colorScheme.background,
+                    onTap: () {},
                   ),
                 ],
               ),

@@ -19,7 +19,8 @@ class AuthListener extends StatelessWidget {
             //do nothing on initial
           },
           authenticated: (_) {
-            context.router.replaceNamed(rHome);
+            // context.router.replaceNamed(rHome);
+            context.router.replaceNamed(rOnBoarding);
           },
           unauthenticated: (_) {
             // context.router.replaceNamed(rLogin);
