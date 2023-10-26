@@ -12,6 +12,6 @@ abstract class PackageInjectableModule {
   // @preResolve
   Algolia get algolia => const Algolia.init(
         applicationId: 'JD88YGON0U',
-        apiKey: '48a2b5d745f6cd1be2c274c7c9e64a92',
+        apiKey: '0c4756ba21dc4c0e95395d22dde2496b',
       ).instance;
 }
