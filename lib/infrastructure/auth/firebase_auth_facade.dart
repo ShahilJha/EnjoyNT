@@ -34,27 +34,28 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
+    required UserName userName,
     required EmailAddress emailAddress,
     required Password password,
     required Password rePassword,
   }) async {
-    print('\n \n ^^^^^^^^^^^ check #1 \n \n ');
     final emailAdressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     final rePasswordStr = rePassword.getOrCrash();
-
-    print('\n \n ^^^^^^^^^^^ check #2 \n \n ');
+    final userNameStr = userName.getOrCrash();
 
     if (passwordStr != rePasswordStr) {
-      print('\n \n ^^^^^^^^^^^ check #2.5 \n \n ');
       return left(const AuthFailure.passwordsNotSame());
     }
-    print('\n \n ^^^^^^^^^^^ check #3 \n \n ');
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential result =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAdressStr,
         password: passwordStr,
       );
+      User user = result.user!;
+      user.updateDisplayName(userNameStr);
+      user.updateEmail(emailAdressStr);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print('EXCEPTION=> ${e.message}');

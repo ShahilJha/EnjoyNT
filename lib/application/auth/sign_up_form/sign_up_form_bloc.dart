@@ -89,6 +89,7 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
           ),
         );
         failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
+          userName: state.userName,
           emailAddress: state.emailAddress,
           password: state.password,
           rePassword: state.rePassword,
