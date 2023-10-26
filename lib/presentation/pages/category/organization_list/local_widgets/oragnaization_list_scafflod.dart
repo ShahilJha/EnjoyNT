@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/app_default_tile.dart';
@@ -92,7 +93,8 @@ class OrganizationListScaffold extends StatelessWidget {
                             detail: data?["organisation_detail"],
                             imageLink: data?["organisation_image"],
                             bookmarked: false,
-                            onTap: () {},
+                            onTap: () => context.router
+                                .push(OrganizationDetailRoute(data: data!)),
                           );
                         },
                       ),
