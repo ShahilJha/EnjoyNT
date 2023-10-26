@@ -5,10 +5,13 @@ import '../../../widgets/app_chip.dart';
 class ListCategoryChips extends StatelessWidget {
   final String categoryTitle;
   final List<String> categoryData;
+  final VoidCallback onPressed;
+
   const ListCategoryChips({
     super.key,
     required this.categoryTitle,
     required this.categoryData,
+    required this.onPressed,
   });
 
   @override
@@ -25,7 +28,10 @@ class ListCategoryChips extends StatelessWidget {
           Wrap(
             children: [
               ...categoryData.map(
-                (item) => AppChip(title: item),
+                (item) => AppChip(
+                  title: item,
+                  onPressed: onPressed,
+                ),
               ),
             ],
           ),

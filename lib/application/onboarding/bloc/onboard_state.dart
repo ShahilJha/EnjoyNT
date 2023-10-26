@@ -6,11 +6,13 @@ class OnboardState with _$OnboardState {
     required String userType,
     required List<String> userCategory,
     required List<String> userIntrest,
+    required int listSize,
   }) = _OnboardState;
 
   factory OnboardState.initial() => OnboardState(
         userType: '',
         userCategory: List<String>.empty(),
         userIntrest: List<String>.empty(),
+        listSize: 0,
       );
 }

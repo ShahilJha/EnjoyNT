@@ -48,6 +48,7 @@ class RecentActivityTile extends StatelessWidget {
               itemCount: tagList.length,
               itemBuilder: (context, index) {
                 return AppChip(
+                  onPressed: () {},
                   title: tagList[index],
                 );
               },

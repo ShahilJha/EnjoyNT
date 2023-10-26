@@ -101,6 +101,7 @@ class InterestSelection extends StatelessWidget {
                         (category) => ListCategoryChips(
                           categoryTitle: category.key,
                           categoryData: category.value,
+                          onPressed: () {},
                         ),
                       )
                       .toList(),

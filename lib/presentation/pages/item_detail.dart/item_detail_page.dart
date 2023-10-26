@@ -241,7 +241,10 @@ class ItemDetailPage extends StatelessWidget {
           Wrap(
             children: [
               ..._tagData.map(
-                (item) => AppChip(title: item),
+                (item) => AppChip(
+                  title: item,
+                  onPressed: () {},
+                ),
               ),
             ],
           ),
