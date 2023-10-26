@@ -164,17 +164,17 @@ class SignUpForm extends StatelessWidget {
                                 text: 'Please tick the agree checkbox'),
                       ),
                       const SizedBox(height: 8),
-                      const OrDivider(),
-                      const SizedBox(height: 8),
-                      GoogleButton(
-                        //todo: uncomment below
-                        onPressed: () => {
-                          //   bloc.add(
-                          //   const SignInFormEvent.signInWithGooglePressed(),
-                          // );
-                        },
-                      ),
-                      const SizedBox(height: 10),
+                      // const OrDivider(),
+                      // const SizedBox(height: 8),
+                      // GoogleButton(
+                      //   //todo: uncomment below
+                      //   onPressed: () => {
+                      //     //   bloc.add(
+                      //     //   const SignInFormEvent.signInWithGooglePressed(),
+                      //     // );
+                      //   },
+                      // ),
+                      // const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

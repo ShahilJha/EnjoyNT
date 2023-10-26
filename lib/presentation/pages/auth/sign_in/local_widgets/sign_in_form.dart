@@ -115,19 +115,19 @@ class SignInForm extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const OrDivider(),
-                      const SizedBox(height: 8),
-                      GoogleButton(
-                        //todo: uncomment below
-                        onPressed: () => bloc.add(
-                          const SignInFormEvent.signInWithGooglePressed(),
-                        ),
+                      // const OrDivider(),
+                      // const SizedBox(height: 8),
+                      // GoogleButton(
+                      //   //todo: uncomment below
+                      //   onPressed: () => bloc.add(
+                      //     const SignInFormEvent.signInWithGooglePressed(),
+                      //   ),
 
-                        // onPressed: () {
-                        //   print('REMEM => ${state.rememberedEmail}');
-                        //   print('Current => ${state.emailAddress.value}');
-                        // },
-                      ),
+                      // onPressed: () {
+                      //   print('REMEM => ${state.rememberedEmail}');
+                      //   print('Current => ${state.emailAddress.value}');
+                      // },
+                      // ),
 
                       const SizedBox(height: 10),
                       Row(
