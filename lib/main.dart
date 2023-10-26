@@ -13,12 +13,6 @@ void main() async {
       projectId: "enjoynt-5d8a4",
     ),
   );
-
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-
-  // await Firebase.initializeApp();
   await configureDependencies();
   runApp(AppWidget());
 }

@@ -88,24 +88,24 @@ class SignInForm extends StatelessWidget {
                       //     const Text("Remember Me?"),
                       //   ],
                       // ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 24.0),
-                            child: Text(
-                              'Forgot Password?',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                      // const SizedBox(height: 8),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     Padding(
+                      //       padding:
+                      //           const EdgeInsets.symmetric(horizontal: 24.0),
+                      //       child: Text(
+                      //         'Forgot Password?',
+                      //         style: TextStyle(
+                      //           fontSize: 14,
+                      //           fontWeight: FontWeight.w700,
+                      //           color: Theme.of(context).colorScheme.primary,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // ),
                       const SizedBox(height: 8),
                       AppButton(
                         textString: 'Sign In',

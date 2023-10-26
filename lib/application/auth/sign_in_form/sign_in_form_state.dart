@@ -9,6 +9,7 @@ class SignInFormState with _$SignInFormState {
     required bool isSubmitting,
     required bool rememberMe,
     required String rememberedEmail,
+    required bool firstStart,
     required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
   }) = _SignInFormState;
 
@@ -20,5 +21,6 @@ class SignInFormState with _$SignInFormState {
         rememberMe: false,
         rememberedEmail: '',
         authFailureOrSuccessOption: none(),
+        firstStart: true,
       );
 }

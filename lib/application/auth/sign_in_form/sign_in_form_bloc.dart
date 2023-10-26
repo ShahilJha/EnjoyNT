@@ -90,6 +90,18 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       );
     }));
 
+    on<ChangeFirstStart>(((event, emit) async {
+      await _sharedPreference.setFirstStart();
+      print(
+          'in shared pref ==========> ${await _sharedPreference.checkIfFirstStart()}');
+
+      emit(
+        state.copyWith(
+          firstStart: await _sharedPreference.checkIfFirstStart(),
+        ),
+      );
+    }));
+
     on<SignInWithEmailAndPasswordPressed>((event, emit) async {
       Either<AuthFailure, Unit>? failureOrSuccess;
 
@@ -109,8 +121,10 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           password: state.password,
         );
       }
+      bool firstStart = await _sharedPreference.checkIfFirstStart();
       emit(
         state.copyWith(
+          firstStart: firstStart,
           isSubmitting: false,
           showErrorMessages: true,
 

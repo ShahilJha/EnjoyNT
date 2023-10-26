@@ -55,7 +55,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       User user = result.user!;
       user.updateDisplayName(userNameStr);
-      user.updateEmail(emailAdressStr);
+      // user.updateEmail(emailAdressStr);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print('EXCEPTION=> ${e.message}');

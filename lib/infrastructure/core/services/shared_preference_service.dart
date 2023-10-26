@@ -9,6 +9,7 @@ class SharedPreferenceService implements ISharedPreferenceService {
 
   final SharedPreferences _sharedPreference;
   final kEmail = 'email';
+  final kFirstStart = 'firstStart';
 
   @override
   Future<String> getRememberedEmail() async {
@@ -24,5 +25,19 @@ class SharedPreferenceService implements ISharedPreferenceService {
   @override
   Future<void> unsetRememberEmail() async {
     _sharedPreference.setString(kEmail, '');
+  }
+
+  @override
+  Future<bool> checkIfFirstStart() async {
+    bool? result = _sharedPreference.getBool(kFirstStart);
+    if (result == null) {
+      return true;
+    }
+    return !result;
+  }
+
+  @override
+  Future<void> setFirstStart() async {
+    await _sharedPreference.setBool(kFirstStart, true);
   }
 }

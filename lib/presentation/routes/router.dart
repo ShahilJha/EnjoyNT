@@ -19,21 +19,9 @@ const rItemDetailPage = '/itemdetail';
 class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
-        // AutoRoute(path: rOnBoarding, page: OnBoardingRoute.page, initial: true),
-        // AutoRoute(
-        //   path: rItemDetailPage,
-        //   page: ItemDetailRoute.page,
-        //   initial: true,
-        // ),
-        // AutoRoute(path: rSetting, page: MainSettingRoute.page, initial: true),
-        // AutoRoute(
-        //     path: rCategoryList, page: CategoryListRoute.page, initial: true),
-        // AutoRoute(path: rHome, page: HomeRoute.page, initial: true),
-
         AutoRoute(path: rSplash, page: SplashRoute.page, initial: true),
         AutoRoute(path: rLogin, page: SignInRoute.page),
         AutoRoute(path: rRegister, page: SignUpRoute.page),
-        AutoRoute(path: rHome, page: HomeRoute.page),
         //todo: use pushNamed
         AutoRoute(path: rCategoryList, page: CategoryListRoute.page),
         //todo: use pushNamed
@@ -45,6 +33,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rDeactivateAccount, page: DeactivateAccountRoute.page),
         AutoRoute(path: rPrivacyPolicy, page: PrivacPolicyRoute.page),
         AutoRoute(path: rOnBoarding, page: OnBoardingRoute.page),
+        // AutoRoute(path: rHome, page: HomeRoute.page),
       ];
 }  
 
