@@ -25,16 +25,17 @@ dependencies:
   provider: ^6.0.5
   responsive_framework: ^1.1.1
   rxdart: ^0.27.7
-  uuid: ^4.1.0
+  uuid: ^3.0.5
   flutter_secure_storage: ^9.0.0
   shared_preferences: ^2.2.2
-  google_fonts: ^6.1.0
+  google_fonts: ^4.0.4
   google_nav_bar: ^5.0.6
   flutter_onboarding_slider: ^1.0.11
   firebase_core: ^2.20.0
   firebase_auth: ^4.12.0
   google_sign_in: ^6.1.5
   cloud_firestore: ^4.12.0
+  algolia: ^1.1.2
 
 dev_dependencies:
   flutter_test:
