@@ -34,12 +34,37 @@ class SplashPage extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: Image.asset(
-                'assets/logo/logo.png',
-                height: 250.0,
-                width: 250.0,
+            Positioned.fill(
+              bottom: 40,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Enjoy',
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 32,
+                            color: Colors.white,
+                          ),
+                    ),
+                    Text(
+                      'NT',
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontSize: 32,
+                          ),
+                    ),
+                  ],
+                ),
               ),
+              // child: Image.asset(
+              //   'assets/logo/logo.png',
+              //   height: 128.0,
+              //   width: 128.0,
+              // ),
             ),
           ],
         ),
