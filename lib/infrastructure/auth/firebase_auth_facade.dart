@@ -124,7 +124,29 @@ class FirebaseAuthFacade implements IAuthFacade {
       ]);
 
   @override
-  Future<void> deactivateUser() => Future.wait([
-        _firebaseAuth.currentUser!.delete(),
-      ]);
+  Future<void> deactivateUser() async {
+    try {
+      await _firebaseAuth.currentUser!.delete();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  Future<void> updateUserName({required String name}) async {
+    try {
+      await _firebaseAuth.currentUser!.updateDisplayName(name);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  Future<void> updateUserPassword({required String password}) async {
+    try {
+      await _firebaseAuth.currentUser!.updatePassword(password);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

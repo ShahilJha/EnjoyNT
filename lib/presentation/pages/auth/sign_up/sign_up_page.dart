@@ -24,7 +24,7 @@ class SignUpPage extends StatelessWidget {
             return Stack(
               children: [
                 const SignUpPageScaffold(),
-                // InProcessOverlay(inProcess: state.isSubmitting),
+                InProcessOverlay(inProcess: state.isSubmitting),
               ],
             );
           },

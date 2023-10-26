@@ -24,4 +24,8 @@ abstract class IAuthFacade {
   Future<void> signOutUser();
 
   Future<void> deactivateUser();
+
+  Future<void> updateUserName({required String name});
+
+  Future<void> updateUserPassword({required String password});
 }
