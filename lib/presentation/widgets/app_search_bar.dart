@@ -1,7 +1,20 @@
 import 'package:algolia/algolia.dart';
 import 'package:config/config.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
+
+// Future<void> _getQueryResults(String queryStr) async {
+//   print('QUERY STR =========> $queryStr');
+//   AlgoliaQuerySnapshot snap = await getIt<Algolia>()
+//       .index('ENJOY_NT_SEARCH')
+//       .query(queryStr)
+//       .getObjects();
+//   snap.hits.asMap().entries.forEach(
+//         (element) => print(element),
+//       );
+//   print(snap.toString());
+// }
 
 class AppSearchBar extends StatefulWidget {
   final Function(String)? onChanged;
@@ -16,12 +29,10 @@ class _AppSearchBarState extends State<AppSearchBar> {
 
   Future<void> _getQueryResults(String queryStr) async {
     print('QUERY STR =========> $queryStr');
-    AlgoliaQuerySnapshot snap = await getIt<Algolia>()
-        .index('ENJOY_NT_SEARCH')
-        .query(queryStr)
-        .getObjects();
+    AlgoliaQuerySnapshot snap =
+        await getIt<Algolia>().index('TEST').query(queryStr).getObjects();
     snap.hits.asMap().entries.forEach(
-          (element) => print(element),
+          (element) => print(element.value),
         );
     print(snap.toString());
   }
@@ -30,66 +41,106 @@ class _AppSearchBarState extends State<AppSearchBar> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 45,
-      child: SearchAnchor(
-          isFullScreen: false,
-          builder: (BuildContext context, SearchController controller) {
-            return SearchBar(
-              controller: controller,
-              padding: const MaterialStatePropertyAll<EdgeInsets>(
-                EdgeInsets.symmetric(horizontal: 16.0),
-              ),
-              hintText: 'Search',
-              hintStyle: const MaterialStatePropertyAll<TextStyle>(
-                TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              elevation: const MaterialStatePropertyAll<double>(0),
-              shape: const MaterialStatePropertyAll<OutlinedBorder>(
-                RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: kSearchBarborder,
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-              ),
-              onTap: () {
-                controller.openView();
-                print('PRESSED onTap ==============> ${controller.text}');
-              },
-              onChanged: (value) {
-                print(
-                    'PRESSED onCHnaged ==============> ${controller.value.text}');
-                print('QUERY VALUE STR =========> $value');
+      child: TextFormField(
+        onTap: () {
+          _getQueryResults('Casuarina');
+          showSearch(
+            context: context,
+            delegate: CustomeSearchDelegate(),
+          );
+        },
+        textAlignVertical: TextAlignVertical.center,
+        textInputAction: TextInputAction.search,
+        textAlign: TextAlign.start,
+        decoration: InputDecoration(
+          iconColor: Theme.of(context).colorScheme.primary,
 
-                _getQueryResults(value);
-              },
-              onSubmitted: (value) => _getQueryResults,
-              leading: const Icon(
-                Icons.search,
-                color: kPrimaryColor,
-              ),
-            );
-          },
-          suggestionsBuilder:
-              (BuildContext context, SearchController controller) {
-            return List<ListTile>.generate(5, (int index) {
-              final String item = 'item $index';
-              return ListTile(
-                title: Text(item),
-                onTap: () {
-                  print('============> ${controller.text}');
-                  setState(() {
-                    controller.closeView(item);
-                  });
-                },
-              );
-            });
-          }),
+          hintText: 'Search',
+
+          hintStyle: Theme.of(context).textTheme.bodySmall,
+          alignLabelWithHint: true,
+
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderSide: BorderSide(
+              color: kBackgroundInactiveColor,
+              width: 1.5,
+            ),
+          ),
+          // hintStyle: const TextStyle(textBaseline: TextBaseline.alphabetic),
+          prefixIcon: const Icon(Icons.search),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomeSearchDelegate extends SearchDelegate {
+  final List<String> searchterms = ['a', 'b'];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: Icon(
+          Icons.clear,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: Icon(
+        Icons.arrow_back,
+        color: Theme.of(context).colorScheme.primary,
+      ),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchterms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var item in searchterms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
     );
   }
 }

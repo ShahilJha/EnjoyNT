@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -117,6 +118,8 @@ class ProfilePageContent extends StatelessWidget {
                         final data = snapshot.data?.docs[index].data();
 
                         return RecentActivityTile(
+                          onTap: () => context.router
+                              .push(EventDetailRoute(data: data!)),
                           title: data?["event_name"],
                           subTitle: '@${data?["event_location"]}',
                           tagList: (data?["event_tags"] as List)
