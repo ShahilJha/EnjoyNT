@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "208450225674",
+    "project_id": "enjoynt-5d8a4",
+    "storage_bucket": "enjoynt-5d8a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208450225674:android:e30c0b4e71829489ea81f3",
+        "android_client_info": {
+          "package_name": "com.example.enjoy_nt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsGcccXwYoFz5x_ZiYJs1ASDe9C89T_oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
