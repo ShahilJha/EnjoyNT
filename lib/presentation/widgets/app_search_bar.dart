@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:algolia/algolia.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:config/config.dart';
 import 'package:enjoy_nt/injection.dart';
 import 'package:enjoy_nt/presentation/routes/router.gr.dart';
@@ -140,26 +141,29 @@ class CustomeSearchDelegate extends SearchDelegate {
     }
   }
 
-  void _goToPage(BuildContext context, dynamic data, String type) {
+  void _goToPage(
+      BuildContext context, dynamic data, String type, String id) async {
+    final temp =
+        await getIt<FirebaseFirestore>().collection(type).doc(id).get();
     switch (type) {
       case 'organisation':
-        context.router.push(OrganizationDetailRoute(data: data!));
+        context.router.push(OrganizationDetailRoute(data: temp.data()!));
       // return values['organisation_name'];
       case 'events':
-        context.router.push(EventDetailRoute(data: data!));
+        context.router.push(EventDetailRoute(data: temp.data()!));
 
       // return values['event_name'];
       case 'destination':
-        context.router.push(DestinationDetailRoute(data: data!));
+        context.router.push(DestinationDetailRoute(data: temp.data()!));
 
       // return values['destination_name'];
       case 'jobs':
-        context.router.push(JobsDetailRoute(data: data!));
+        context.router.push(JobsDetailRoute(data: temp.data()!));
 
       // return values['job_title'];
       case 'hotel':
       default:
-        context.router.push(HotelDetailRoute(data: data!));
+        context.router.push(HotelDetailRoute(data: temp.data()!));
 
       // return values['hotel_name'];
     }
@@ -190,8 +194,9 @@ class CustomeSearchDelegate extends SearchDelegate {
               String resultId = data?[index].data['id'];
               String resultType = data?[index].data['type'];
               return ListTile(
-                onTap: () => _goToPage(context, result, resultType),
+                // onTap: () => _goToPage(context, result, resultType, resultId),
                 title: Text(_getItemName(result, resultType)),
+                // title: Text(resultType),
                 subtitle: Text(resultType),
               );
             },
