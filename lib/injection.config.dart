@@ -13,22 +13,24 @@ import 'package:firebase_auth/firebase_auth.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:shared_preferences/shared_preferences.dart' as _i8;
+import 'package:shared_preferences/shared_preferences.dart' as _i10;
 
-import 'application/auth/auth_bloc.dart' as _i12;
-import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i15;
-import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i9;
+import 'application/auth/auth_bloc.dart' as _i14;
+import 'application/auth/sign_in_form/sign_in_form_bloc.dart' as _i17;
+import 'application/auth/sign_up_form/sign_up_form_bloc.dart' as _i11;
 import 'domain/auth/i_auth_facade.dart' as _i6;
-import 'domain/core/services/i_shared_preference_service.dart' as _i13;
+import 'domain/auth/user/i_user_repository.dart' as _i8;
+import 'domain/core/services/i_shared_preference_service.dart' as _i15;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
-import 'infrastructure/core/firestore/firebase_injectable_module.dart' as _i16;
+import 'infrastructure/auth/user_repository.dart' as _i9;
+import 'infrastructure/core/firestore/firebase_injectable_module.dart' as _i18;
 import 'infrastructure/core/injectable_modules/internal_injectable_module.dart'
-    as _i18;
+    as _i20;
 import 'infrastructure/core/injectable_modules/package_injectable_module.dart'
-    as _i17;
-import 'infrastructure/core/services/shared_preference_service.dart' as _i14;
-import 'presentation/core/theme/theme_manager.dart' as _i10;
-import 'presentation/utils/utilities.dart' as _i11;
+    as _i19;
+import 'infrastructure/core/services/shared_preference_service.dart' as _i16;
+import 'presentation/core/theme/theme_manager.dart' as _i12;
+import 'presentation/utils/utilities.dart' as _i13;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -54,27 +56,29 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i3.FirebaseAuth>(),
           gh<_i5.GoogleSignIn>(),
         ));
-    await gh.lazySingletonAsync<_i8.SharedPreferences>(
+    gh.lazySingleton<_i8.IUserRepository>(
+        () => _i9.UserRepository(gh<_i4.FirebaseFirestore>()));
+    await gh.lazySingletonAsync<_i10.SharedPreferences>(
       () => packageInjectableModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i9.SignUpFormBloc>(
-        () => _i9.SignUpFormBloc(gh<_i6.IAuthFacade>()));
-    gh.singleton<_i10.ThemeManager>(_i10.ThemeManager());
-    gh.lazySingleton<_i11.Utilities>(() => internalInjectableModule.utilities);
-    gh.factory<_i12.AuthBloc>(() => _i12.AuthBloc(gh<_i6.IAuthFacade>()));
-    gh.lazySingleton<_i13.ISharedPreferenceService>(
-        () => _i14.SharedPreferenceService(gh<_i8.SharedPreferences>()));
-    gh.factory<_i15.SignInFormBloc>(() => _i15.SignInFormBloc(
+    gh.factory<_i11.SignUpFormBloc>(
+        () => _i11.SignUpFormBloc(gh<_i6.IAuthFacade>()));
+    gh.singleton<_i12.ThemeManager>(_i12.ThemeManager());
+    gh.lazySingleton<_i13.Utilities>(() => internalInjectableModule.utilities);
+    gh.factory<_i14.AuthBloc>(() => _i14.AuthBloc(gh<_i6.IAuthFacade>()));
+    gh.lazySingleton<_i15.ISharedPreferenceService>(
+        () => _i16.SharedPreferenceService(gh<_i10.SharedPreferences>()));
+    gh.factory<_i17.SignInFormBloc>(() => _i17.SignInFormBloc(
           gh<_i6.IAuthFacade>(),
-          gh<_i13.ISharedPreferenceService>(),
+          gh<_i15.ISharedPreferenceService>(),
         ));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i16.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i18.FirebaseInjectableModule {}
 
-class _$PackageInjectableModule extends _i17.PackageInjectableModule {}
+class _$PackageInjectableModule extends _i19.PackageInjectableModule {}
 
-class _$InternalInjectableModule extends _i18.InternalInjectableModule {}
+class _$InternalInjectableModule extends _i20.InternalInjectableModule {}
