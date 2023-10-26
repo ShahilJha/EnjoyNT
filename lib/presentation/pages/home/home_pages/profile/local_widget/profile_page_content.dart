@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -90,30 +91,42 @@ class ProfilePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Recent Activities',
-            onTap: () {},
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 0,
-                vertical: 0,
-              ),
-              shrinkWrap: true,
-              itemCount: _tileData.length,
-              itemBuilder: (context, index) {
-                // final data = _tileData[index];
-                return const RecentActivityTile(
-                  title: 'IT code fair',
-                  subTitle: '@Hilton Hotel',
-                  tagList: [
-                    'Professional',
-                    'Meet & Greet',
-                    'Professional',
-                    'Meet & Greet',
-                    'Professional',
-                    'Meet & Greet',
-                  ],
-                );
-              },
-            ),
+            onTap: () => context.router.pushNamed(rEventListPage),
+            child: StreamBuilder(
+                stream:
+                    getIt<FirebaseFirestore>().collection('events').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                          color: Theme.of(context).colorScheme.primary),
+                    );
+                  }
+
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.55,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 0,
+                        vertical: 0,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.size,
+                      itemBuilder: (context, index) {
+                        // final data = _tileData[index];
+                        final data = snapshot.data?.docs[index].data();
+
+                        return RecentActivityTile(
+                          title: data?["event_name"],
+                          subTitle: '@${data?["event_location"]}',
+                          tagList: (data?["event_tags"] as List)
+                              .map((item) => item as String)
+                              .toList(),
+                        );
+                      },
+                    ),
+                  );
+                }),
           ),
         ],
       ),

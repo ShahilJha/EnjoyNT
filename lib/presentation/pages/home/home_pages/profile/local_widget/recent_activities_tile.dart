@@ -18,6 +18,7 @@ class RecentActivityTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 140,
+      margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(
@@ -33,11 +34,13 @@ class RecentActivityTile extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodyLarge,
+            maxLines: 1,
           ),
           const SizedBox(height: 5),
           Text(
             subTitle,
             style: Theme.of(context).textTheme.bodySmall,
+            maxLines: 1,
           ),
           const SizedBox(height: 15),
           SizedBox(
