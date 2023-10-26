@@ -121,6 +121,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
     });
 
     on<SignInWithGooglePressed>(((event, emit) async {
+      print("*******BLOC EVENT SignInWithGooglePressed called");
       emit(
         state.copyWith(
           isSubmitting: true,
