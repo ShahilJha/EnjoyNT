@@ -28,11 +28,11 @@ class ItemTile extends StatelessWidget {
             Container(
               height: 120.0,
               width: 221.0,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 //todo: check this the altImageColor is not being taken as value
                 // color: altImageColor,
-                color: kLogoutButtonColor,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                color: kLogoutButtonColor.withOpacity(0.05),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
               //todo: undo comment to see image
               child: imageUrl.isEmpty

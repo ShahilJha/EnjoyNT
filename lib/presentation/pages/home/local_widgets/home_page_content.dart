@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -131,7 +132,8 @@ class HomePageContent extends StatelessWidget {
                         return ItemTile(
                           imageUrl: data?["destination_image"],
                           title: data?["destination_name"],
-                          onTap: () {},
+                          onTap: () => context.router
+                              .push(DestinationDetailRoute(data: data!)),
                         );
                       },
                     );
@@ -166,7 +168,8 @@ class HomePageContent extends StatelessWidget {
                         return ItemTile(
                           imageUrl: data?["image"],
                           title: data?["event_name"],
-                          onTap: () {},
+                          onTap: () => context.router
+                              .push(EventDetailRoute(data: data!)),
                         );
                       },
                     );
@@ -200,7 +203,8 @@ class HomePageContent extends StatelessWidget {
                         return ItemTile(
                           imageUrl: data?["job_image"],
                           title: data?["job_title"],
-                          onTap: () {},
+                          onTap: () =>
+                              context.router.push(JobsDetailRoute(data: data!)),
                         );
                       },
                     );

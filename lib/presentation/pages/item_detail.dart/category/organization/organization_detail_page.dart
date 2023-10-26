@@ -21,7 +21,7 @@ class OrganizationDetailPage extends StatelessWidget {
               width: double.infinity,
               child: Image.network(
                 data['organisation_image'],
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.contain,
               ),
             ),
             buttonArrow(context),

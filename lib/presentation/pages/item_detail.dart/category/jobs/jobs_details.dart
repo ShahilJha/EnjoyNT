@@ -21,7 +21,7 @@ class JobsDetailPage extends StatelessWidget {
               width: double.infinity,
               child: Image.network(
                 data['job_image'],
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.contain,
               ),
             ),
             buttonArrow(context),

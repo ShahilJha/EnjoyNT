@@ -21,7 +21,7 @@ class HotelDetailPage extends StatelessWidget {
               width: double.infinity,
               child: Image.network(
                 data['hotel_room_photo'][0],
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.contain,
               ),
             ),
             buttonArrow(context),
