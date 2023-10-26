@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 
 import '../../../injection.dart';
+import '../../routes/router.gr.dart';
 import 'local_widgets/category_selection.dart';
 import 'local_widgets/interest_selection.dart';
 import 'local_widgets/user_type_selection.dart';
@@ -24,24 +25,25 @@ class OnBoardingPage extends StatelessWidget {
         create: (context) => getIt<OnboardBloc>(),
         child: OnBoardingSlider(
           finishButtonText: 'Continue',
-          // skipTextButton: Text(
-          //   'Skip',
-          //   style: TextStyle(
-          //     fontSize: 16,
-          //     color: Theme.of(context).colorScheme.primary,
-          //     fontWeight: FontWeight.w600,
-          //   ),
-          // ),
+          skipTextButton: Text(
+            'Skip',
+            style: TextStyle(
+              fontSize: 16,
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           onFinish: () {
-            context.router.pop();
-            context.router.pushNamed(rHome);
+            // context.router.pop();
+            // context.router.pushNamed(rHome);
+            context.router.replaceAll([const HomeRoute()]);
           },
           finishButtonStyle: FinishButtonStyle(
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
           //
           trailing: Text(
-            'Continue',
+            'Skip',
             style: TextStyle(
               fontSize: 16,
               color: Theme.of(context).colorScheme.primary,
@@ -49,8 +51,9 @@ class OnBoardingPage extends StatelessWidget {
             ),
           ),
           trailingFunction: () {
-            context.router.pop();
-            context.router.pushNamed(rHome);
+            context.router.replaceAll([const HomeRoute()]);
+            // context.router.pop();
+            // context.router.pushNamed(rHome);
           },
           controllerColor: Theme.of(context).colorScheme.primary,
           totalPage: 3,

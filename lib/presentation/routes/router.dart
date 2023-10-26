@@ -33,7 +33,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rDeactivateAccount, page: DeactivateAccountRoute.page),
         AutoRoute(path: rPrivacyPolicy, page: PrivacPolicyRoute.page),
         AutoRoute(path: rOnBoarding, page: OnBoardingRoute.page),
-        // AutoRoute(path: rHome, page: HomeRoute.page),
+        AutoRoute(path: rHome, page: HomeRoute.page),
       ];
 }  
 
