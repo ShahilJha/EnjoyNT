@@ -22,18 +22,18 @@ class AuthListener extends StatelessWidget {
           },
           authenticated: (_) async {
             // context.router.replaceNamed(rHome);
-            // bool flag =
-            //     await getIt<ISharedPreferenceService>().checkIfFirstStart();
+            bool flag =
+                await getIt<ISharedPreferenceService>().checkIfFirstStart();
 
-            // if (!flag) {
-            //   context.router.replaceNamed(rOnBoarding);
-            // } else {
-            //   context.router.replaceNamed(rHome);
-            // }
+            if (!flag) {
+              context.router.replaceNamed(rOnBoarding);
+            } else {
+              context.router.replaceNamed(rHome);
+            }
           },
           unauthenticated: (_) {
             // context.router.replaceNamed(rLogin);
-            // context.router.replaceAll([const SignInRoute()]);
+            context.router.replaceAll([const SignInRoute()]);
           },
         );
       },
