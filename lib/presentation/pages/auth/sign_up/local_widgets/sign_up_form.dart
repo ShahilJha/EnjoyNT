@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -129,10 +131,11 @@ class SignUpForm extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Checkbox(
-                            value: false,
-                            // onChanged: (value) => bloc
-                            //     .add(SignInFormEvent.toggleRememberMe(value!)),
-                            onChanged: (value) => {},
+                            value: state.agreementChecked,
+                            onChanged: (value) => bloc.add(
+                                SignUpFormEvent.toggleAgreementCheckbox(
+                                    value!)),
+                            // onChanged: (value) => {},
                           ),
                           Text(
                             "Agree with our Terms & Condition",
@@ -152,10 +155,13 @@ class SignUpForm extends StatelessWidget {
                       const SizedBox(height: 10),
                       AppButton(
                         textString: 'Sign Up',
-                        onPressed: () => bloc.add(
-                          const SignUpFormEvent
-                              .registerWithEmailAndPasswordPressed(),
-                        ),
+                        onPressed: () async => state.agreementChecked == true
+                            ? bloc.add(
+                                const SignUpFormEvent
+                                    .registerWithEmailAndPasswordPressed(),
+                              )
+                            : getIt<Utilities>().showSnackBar(
+                                text: 'Please tick the agree checkbox'),
                       ),
                       const SizedBox(height: 8),
                       const OrDivider(),

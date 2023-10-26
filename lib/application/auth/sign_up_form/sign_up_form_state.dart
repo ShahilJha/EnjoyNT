@@ -9,6 +9,7 @@ class SignUpFormState with _$SignUpFormState {
     required Password rePassword,
     required bool showErrorMessages,
     required bool isSubmitting,
+    required bool agreementChecked,
     required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption,
   }) = _SignUpFormState;
 
@@ -20,5 +21,6 @@ class SignUpFormState with _$SignUpFormState {
         showErrorMessages: false,
         isSubmitting: false,
         authFailureOrSuccessOption: none(),
+        agreementChecked: false,
       );
 }

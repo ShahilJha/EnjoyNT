@@ -61,6 +61,15 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
       );
     }));
 
+    on<ToggleAgreementCheckbox>(((event, emit) async {
+      emit(
+        state.copyWith(
+          agreementChecked: event.value,
+          authFailureOrSuccessOption: none(),
+        ),
+      );
+    }));
+
     on<RegisterWithEmailAndPasswordPressed>((event, emit) async {
       Either<AuthFailure, Unit>? failureOrSuccess;
 

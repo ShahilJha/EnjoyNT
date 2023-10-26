@@ -10,6 +10,8 @@ class SignUpFormEvent with _$SignUpFormEvent {
   const factory SignUpFormEvent.rePasswordChanged(String rePasswordStr) =
       RePasswordChanged;
   const factory SignUpFormEvent.clearEmailAddress() = ClearEmailAddress;
+  const factory SignUpFormEvent.toggleAgreementCheckbox(bool value) =
+      ToggleAgreementCheckbox;
   const factory SignUpFormEvent.registerWithEmailAndPasswordPressed() =
       RegisterWithEmailAndPasswordPressed;
 }
