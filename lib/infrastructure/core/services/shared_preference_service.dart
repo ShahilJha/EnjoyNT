@@ -30,10 +30,17 @@ class SharedPreferenceService implements ISharedPreferenceService {
   @override
   Future<bool> checkIfFirstStart() async {
     bool? result = _sharedPreference.getBool(kFirstStart);
-    if (result == null) {
+    print('start usage =>>>>>>>>>>>>>>>>>>>>> $result');
+
+    if (result == null || result == false) {
+      print('PREF value ===========> false');
+
+      await _sharedPreference.setBool(kFirstStart, true);
+      print(
+          'PREF Set to ==================> ${await _sharedPreference.getBool(kFirstStart)}');
       return true;
     }
-    return !result;
+    return result;
   }
 
   @override

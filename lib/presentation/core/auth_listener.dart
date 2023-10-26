@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:enjoy_nt/domain/core/services/i_shared_preference_service.dart';
+import 'package:enjoy_nt/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,9 +20,16 @@ class AuthListener extends StatelessWidget {
           initial: (_) {
             //do nothing on initial
           },
-          authenticated: (_) {
+          authenticated: (_) async {
             // context.router.replaceNamed(rHome);
-            context.router.replaceNamed(rOnBoarding);
+            bool flag =
+                await getIt<ISharedPreferenceService>().checkIfFirstStart();
+
+            if (!flag) {
+              context.router.replaceNamed(rOnBoarding);
+            } else {
+              context.router.replaceNamed(rHome);
+            }
           },
           unauthenticated: (_) {
             // context.router.replaceNamed(rLogin);

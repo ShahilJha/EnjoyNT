@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../application/auth/auth_bloc.dart';
 import '../../../../../application/auth/sign_in_form/sign_in_form_bloc.dart';
+import '../../../../../domain/core/services/i_shared_preference_service.dart';
 import '../../../../../injection.dart';
 import '../../../../utils/utilities.dart';
 import 'sign_in_form.dart';
@@ -43,18 +44,20 @@ class SignInPageScaffold extends StatelessWidget {
               );
             },
             //in Unit
-            (_) {
+            (_) async {
               context
                   .read<SignInFormBloc>()
                   .add(const SignInFormEvent.changeFirstStart());
               //Navigation
-              print('STAUS =========> ${state.firstStart}');
-              // state.firstStart
-              //     ? context.router.replaceAll([const HomeRoute()])
-              //     :
-              //     context.router.replaceAll([const OnBoardingRoute()]);
-              context.router.pushNamed(rOnBoarding);
-              //making the auth state in the AuthBloc as _authenticated_
+              bool flag =
+                  await getIt<ISharedPreferenceService>().checkIfFirstStart();
+
+              if (!flag) {
+                context.router.replaceNamed(rOnBoarding);
+              } else {
+                context.router.replaceNamed(rHome);
+              }
+
               context
                   .read<AuthBloc>()
                   .add(const AuthEvent.authCheckRequested());
