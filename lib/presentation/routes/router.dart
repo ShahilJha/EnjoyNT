@@ -45,6 +45,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rDestinationListPage, page: DestinationListRoute.page),
         AutoRoute(
             path: rOraganizationListPage, page: OraganizationListRoute.page),
+        AutoRoute(page: EventDetailRoute.page),
       ];
 }  
 
