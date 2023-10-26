@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:enjoy_nt/injection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../routes/router.dart';
@@ -59,11 +61,13 @@ class ProfilePageContent extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'John Citizen',
+                            getIt<FirebaseAuth>().currentUser?.displayName ??
+                                'Username',
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           Text(
-                            'Student',
+                            getIt<FirebaseAuth>().currentUser?.email ??
+                                'Student',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
@@ -84,7 +88,6 @@ class ProfilePageContent extends StatelessWidget {
               ),
             ],
           ),
-          //todo: add route
           ListContentTemplate(
             title: 'Recent Activities',
             seeAllRoute: '',

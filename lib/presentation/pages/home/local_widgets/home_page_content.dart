@@ -1,3 +1,5 @@
+import 'package:enjoy_nt/injection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/app_search_bar.dart';
@@ -24,21 +26,21 @@ class HomePageContent extends StatelessWidget {
             ),
             height: 270.0,
             width: double.infinity,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                   Text(
-                    'Hi, John',
-                    style: TextStyle(
+                    'Hi, ${getIt<FirebaseAuth>().currentUser?.displayName?.split(' ')[0] ?? 'User'}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 32,
                       color: Colors.white,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Let’s explore the Northern Territory',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
@@ -46,8 +48,8 @@ class HomePageContent extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 25),
-                  AppSearchBar(),
+                  const SizedBox(height: 25),
+                  const AppSearchBar(),
                   // SizedBox(
                   //   height: 40,
                   //   child: TextField(
