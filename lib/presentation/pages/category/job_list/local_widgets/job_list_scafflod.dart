@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/firestore_data/i_firestore_data_facade.dart';
@@ -92,7 +93,8 @@ class JobListScaffold extends StatelessWidget {
                             detail: data?["job_location"],
                             imageLink: data?["job_image"],
                             bookmarked: false,
-                            onTap: () {},
+                            onTap: () => context.router
+                                .push(JobsDetailRoute(data: data!)),
                           );
                         },
                       ),

@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import '../../../../widgets/app_chip.dart';
 
 @RoutePage()
-class JobsDetailPage extends StatelessWidget {
+class DestinationDetailPage extends StatelessWidget {
   final Map<String, dynamic> data;
-  const JobsDetailPage({super.key, required this.data});
+  const DestinationDetailPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class JobsDetailPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.45,
               width: double.infinity,
               child: Image.network(
-                data['job_image'],
+                data['destination_image'],
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -95,14 +95,14 @@ class JobsDetailPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    data['job_title'],
+                    data['destination_name'],
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Location: ${data["job_location"]}',
+                    'Location: ${data["destination_location"]}',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                         ),
@@ -131,7 +131,7 @@ class JobsDetailPage extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    data['job_description'],
+                    data['destination_description'],
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const Padding(
@@ -160,9 +160,23 @@ class JobsDetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ingredients(context,
-                          'Job Salary: \$${data["job_salary"] ?? "None"}'),
-                      // ingredients(context,
-                      //     'Accessibility Age: ${data["event_accessibility"]["accessibility_age"] ?? "None"}'),
+                          'Cost: \$${data["destination_cost"] ?? "None"}'),
+                      ingredients(context, 'Opening Hours:'),
+
+                      ingredients2(context,
+                          'Monday: ${data["destination_opening_hours"]["Monday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Tuesday: ${data["destination_opening_hours"]["Tuesday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Wednesday: ${data["destination_opening_hours"]["Wednesday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Thursday: ${data["destination_opening_hours"]["Thursday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Friday: ${data["destination_opening_hours"]["Friday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Saturday: ${data["destination_opening_hours"]["Saturday"] ?? "None"}'),
+                      ingredients2(context,
+                          'Sunday: ${data["destination_opening_hours"]["Sunday"] ?? "None"}'),
                       // ingredients(context,
                       //     'Accessibility Disabled: ${data["event_accessibility"]["accessibility_disabled"] == "true" ? "True" : "False" ?? "None"}'),
                       // ingredients(context,
@@ -206,12 +220,12 @@ class JobsDetailPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Job Category',
+            'Tags',
             style: Theme.of(context).textTheme.displayMedium,
           ),
           Wrap(
             children: [
-              ...(data["job_category"] as List)
+              ...(data["destination_tags"] as List)
                   .map((item) => item as String)
                   .toList()
                   .map(
@@ -237,6 +251,33 @@ class JobsDetailPage extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.secondary,
             child: Icon(
               Icons.arrow_forward_rounded,
+              size: 15,
+              color: Theme.of(context).colorScheme.background,
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            data,
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+        ],
+      ),
+    );
+  }
+
+  ingredients2(BuildContext context, String data) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Wrap(
+        children: [
+          const SizedBox(width: 35),
+          CircleAvatar(
+            radius: 8,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            child: Icon(
+              Icons.arrow_right,
               size: 15,
               color: Theme.of(context).colorScheme.background,
             ),
