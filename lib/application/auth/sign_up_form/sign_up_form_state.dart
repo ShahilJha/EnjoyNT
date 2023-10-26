@@ -3,6 +3,7 @@ part of 'sign_up_form_bloc.dart';
 @freezed
 class SignUpFormState with _$SignUpFormState {
   const factory SignUpFormState({
+    required UserName userName,
     required EmailAddress emailAddress,
     required Password password,
     required Password rePassword,
@@ -12,6 +13,7 @@ class SignUpFormState with _$SignUpFormState {
   }) = _SignUpFormState;
 
   factory SignUpFormState.initial() => SignUpFormState(
+        userName: UserName(''),
         emailAddress: EmailAddress(''),
         password: Password(''),
         rePassword: Password(''),

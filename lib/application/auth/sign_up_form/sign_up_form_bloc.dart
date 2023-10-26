@@ -16,6 +16,15 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
   final IAuthFacade _authFacade;
 
   SignUpFormBloc(this._authFacade) : super(SignUpFormState.initial()) {
+    on<UserNameChanged>(((event, emit) async {
+      emit(
+        state.copyWith(
+          userName: UserName(event.userNameStr),
+          authFailureOrSuccessOption: none(),
+        ),
+      );
+    }));
+
     on<EmailChanged>(((event, emit) async {
       emit(
         state.copyWith(
@@ -55,27 +64,27 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
     on<RegisterWithEmailAndPasswordPressed>((event, emit) async {
       Either<AuthFailure, Unit>? failureOrSuccess;
 
-      print('****** RegisterWithEmailAndPasswordPressed #1');
+      final isUserNamevalid = state.userName.isValid();
       final isEmailValid = state.emailAddress.isValid();
       final isPasswordValid = state.password.isValid();
-      print('****** RegisterWithEmailAndPasswordPressed #2');
+      final isRePasswordValid = state.rePassword.isValid();
 
-      if (isEmailValid && isPasswordValid) {
-        print('****** RegisterWithEmailAndPasswordPressed #3');
+      if (isUserNamevalid &&
+          isEmailValid &&
+          isPasswordValid &&
+          isRePasswordValid) {
         emit(
           state.copyWith(
             isSubmitting: true,
             authFailureOrSuccessOption: none(),
           ),
         );
-        print('****** RegisterWithEmailAndPasswordPressed #4');
         failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
           emailAddress: state.emailAddress,
           password: state.password,
           rePassword: state.rePassword,
         );
       }
-      print('****** RegisterWithEmailAndPasswordPressed #5');
       emit(
         state.copyWith(
           isSubmitting: false,

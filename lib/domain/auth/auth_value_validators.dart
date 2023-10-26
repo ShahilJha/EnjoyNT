@@ -30,3 +30,16 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     // return left(ValueFailure.shortPassword(failedValue: input));
   }
 }
+
+Either<ValueFailure<String>, String> validateUserName(String input) {
+  if (input.length > 3 || input.isNotEmpty) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.auth(
+        AuthValueFailure.invalidUserName(failedValue: input),
+      ),
+    );
+    // return left(ValueFailure.shortPassword(failedValue: input));
+  }
+}

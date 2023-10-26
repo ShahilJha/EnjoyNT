@@ -10,4 +10,7 @@ class AuthValueFailure<T> with _$AuthValueFailure<T> {
   const factory AuthValueFailure.shortPassword({
     required T failedValue,
   }) = ShortPassword<T>;
+  const factory AuthValueFailure.invalidUserName({
+    required T failedValue,
+  }) = InvalidUserName<T>;
 }

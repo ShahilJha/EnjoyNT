@@ -27,16 +27,23 @@ class SignUpForm extends StatelessWidget {
                       : AutovalidateMode.disabled,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Create an Account",
-                        style: Theme.of(context).textTheme.displayMedium,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: Text(
+                          "Create an Account",
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
                       ),
                       const SizedBox(height: 14),
-                      Text(
-                        "Fill in the details below or register with \nyour google acount",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        textAlign: TextAlign.center,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: Text(
+                          "Fill in the details below or register with \nyour google acount",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          textAlign: TextAlign.start,
+                        ),
                       ),
                       AppTextField(
                         textFieldType: TextFieldType.normal,
@@ -45,22 +52,22 @@ class SignUpForm extends StatelessWidget {
                         icon: Icons.person,
                         labelText: "Username",
                         hintText: "John Doe",
-                        onChanged: (value) => {},
+                        // onChanged: (value) => {},
 
-                        // onChanged: (value) =>
-                        //     bloc.add(SignUpFormEvent.emailChanged(value)),
-                        // validator: (_) => bloc.state.emailAddress.value.fold(
-                        //   //left Failure
-                        //   (leftFailure) => leftFailure.maybeMap(
-                        //     auth: (failure) => failure.authFailure.maybeMap(
-                        //       invalidEmail: (_) => 'Invlid Email',
-                        //       orElse: () => null,
-                        //     ),
-                        //     orElse: () => null,
-                        //   ),
-                        //   //right value
-                        //   (_) => null,
-                        // ),
+                        onChanged: (value) =>
+                            bloc.add(SignUpFormEvent.userNameChanged(value)),
+                        validator: (_) => bloc.state.userName.value.fold(
+                          //left Failure
+                          (leftFailure) => leftFailure.maybeMap(
+                            auth: (failure) => failure.authFailure.maybeMap(
+                              invalidUserName: (_) => 'Invlid Username',
+                              orElse: () => null,
+                            ),
+                            orElse: () => null,
+                          ),
+                          //right value
+                          (_) => null,
+                        ),
                       ),
                       AppTextField(
                         textFieldType: TextFieldType.email,
@@ -75,7 +82,7 @@ class SignUpForm extends StatelessWidget {
                           //left Failure
                           (leftFailure) => leftFailure.maybeMap(
                             auth: (failure) => failure.authFailure.maybeMap(
-                              invalidEmail: (_) => 'Invlid Email',
+                              invalidEmail: (_) => 'Invalid Email',
                               orElse: () => null,
                             ),
                             orElse: () => null,
