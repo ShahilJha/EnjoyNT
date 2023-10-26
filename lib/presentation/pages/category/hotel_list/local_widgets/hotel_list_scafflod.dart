@@ -1,21 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/app_default_tile.dart';
 import '../../../../widgets/app_search_bar.dart';
 
 class HotelListScaffold extends StatelessWidget {
-  HotelListScaffold({super.key});
-
-  final List _tileData = [
-    {
-      'title': 'Jobs',
-      'routeLink': '',
-      'imageUrl': 'assets/icons/jobs.png',
-    },
-  ];
+  const HotelListScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +37,7 @@ class HotelListScaffold extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
               child: Text(
-                'Events',
+                'Hotels',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 24,
@@ -90,7 +83,8 @@ class HotelListScaffold extends StatelessWidget {
                             detail: data?["hotel_location"],
                             imageLink: data?["hotel_room_photo"][0],
                             bookmarked: false,
-                            onTap: () {},
+                            onTap: () => context.router
+                                .push(HotelDetailRoute(data: data!)),
                           );
                         },
                       ),
