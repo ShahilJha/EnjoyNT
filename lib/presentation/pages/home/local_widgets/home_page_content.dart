@@ -113,6 +113,12 @@ class HomePageContent extends StatelessWidget {
                       .collection('destination')
                       .snapshots(),
                   builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.primary),
+                      );
+                    }
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -142,6 +148,12 @@ class HomePageContent extends StatelessWidget {
                       .collection('events')
                       .snapshots(),
                   builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.primary),
+                      );
+                    }
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -170,6 +182,12 @@ class HomePageContent extends StatelessWidget {
                   stream:
                       getIt<FirebaseFirestore>().collection('jobs').snapshots(),
                   builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                            color: Theme.of(context).colorScheme.primary),
+                      );
+                    }
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
