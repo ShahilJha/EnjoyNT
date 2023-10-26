@@ -22,7 +22,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           //none()
           () => emit(const AuthState.unauthenticated()),
           //some()
-          (_) => emit(const AuthState.authenticated()),
+          (some) => emit(
+            AuthState.authenticated(
+              User(
+                id: some.id,
+                username: some.username,
+                emailAddress: some.emailAddress,
+              ),
+            ),
+          ),
         );
       },
     );
