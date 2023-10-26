@@ -93,7 +93,7 @@ class HomePageContent extends StatelessWidget {
                   ),
                   CategoryRoundTile(
                     title: 'Events',
-                    routeLink: '',
+                    routeLink: rEventListPage,
                     imageUrl: 'assets/icons/events.png',
                   ),
                 ],

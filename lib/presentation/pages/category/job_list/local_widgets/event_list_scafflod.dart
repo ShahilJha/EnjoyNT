@@ -7,8 +7,8 @@ import '../../../../../domain/firestore_data/i_firestore_data_facade.dart';
 import '../../../../widgets/app_default_tile.dart';
 import '../../../../widgets/app_search_bar.dart';
 
-class DestinationListScaffold extends StatelessWidget {
-  DestinationListScaffold({super.key});
+class EventListScaffold extends StatelessWidget {
+  EventListScaffold({super.key});
 
   final List _tileData = [
     {
@@ -45,7 +45,7 @@ class DestinationListScaffold extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
               child: Text(
-                'Destinations',
+                'Events',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 24,
@@ -64,11 +64,9 @@ class DestinationListScaffold extends StatelessWidget {
             // ),
             // const SizedBox(height: 25),
             StreamBuilder(
-                stream: getIt<FirebaseFirestore>()
-                    .collection('destination')
-                    .snapshots(),
+                stream:
+                    getIt<FirebaseFirestore>().collection('events').snapshots(),
                 builder: (context, snapshot) {
-                  print(snapshot);
                   if (!snapshot.hasData) {
                     return Center(
                       child: CircularProgressIndicator(
@@ -88,10 +86,11 @@ class DestinationListScaffold extends StatelessWidget {
                           // <DocumentSnapshot> items = snapshot.data?.documents;
                           final data = snapshot.data?.docs[index].data();
                           return AppDefaultTile(
-                            title: data?["destination_name"],
-                            subTitle: '\$${data?["destination_cost"]}',
-                            detail: data?["destination_location"],
-                            imageLink: data?["destination_image"],
+                            title: data?["event_name"],
+                            subTitle:
+                                'Entry cost: \$${data?["event_entry_cost"]}',
+                            detail: data?["event_location"],
+                            imageLink: data?["event_image"],
                             bookmarked: false,
                             onTap: () {},
                           );
