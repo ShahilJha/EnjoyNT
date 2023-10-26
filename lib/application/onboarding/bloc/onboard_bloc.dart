@@ -17,11 +17,25 @@ class OnboardBloc extends Bloc<OnboardEvent, OnboardState> {
       }));
 
       on<ClickedLookingFor>(((event, emit) async {
-        emit(
-          state.copyWith(
-            userCategory: [...state.userCategory, event.option],
-          ),
-        );
+        bool flag = state.userCategory.contains(event.option);
+
+        if (flag) {
+          List<String> tempList = state.userCategory
+              .where((element) => element != event.option)
+              .toList();
+          print(tempList);
+          emit(
+            state.copyWith(
+              userCategory: [...tempList],
+            ),
+          );
+        } else {
+          emit(
+            state.copyWith(
+              userCategory: [...state.userCategory, event.option],
+            ),
+          );
+        }
       }));
 
       on<ClickedIntrestedOption>(((event, emit) async {
