@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:enjoy_nt/presentation/routes/router.dart';
+import 'package:enjoy_nt/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,7 +50,9 @@ class SignInPageScaffold extends StatelessWidget {
                   .add(const SignInFormEvent.rememberEmail());
               //TODO: navigation
               //Navigation
-              context.router.replaceNamed(rHome);
+              // context.router.replaceNamed(rHome);
+              // context.router.popUntil((route) => route.settings.name == rLogin);
+              context.router.replaceAll([HomeRoute()]);
               //making the auth state in the AuthBloc as _authenticated_
               context
                   .read<AuthBloc>()

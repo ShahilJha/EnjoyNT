@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/auth/auth_bloc.dart';
 import '../routes/router.dart';
+import '../routes/router.gr.dart';
 
 class AuthListener extends StatelessWidget {
   const AuthListener({super.key, required this.child});
@@ -18,12 +19,11 @@ class AuthListener extends StatelessWidget {
             //do nothing on initial
           },
           authenticated: (_) {
-            //TODO: navigation
-            // context.router.replaceNamed(rNotesOverview);
+            context.router.replaceNamed(rHome);
           },
           unauthenticated: (_) {
             // context.router.replaceNamed(rLogin);
-            context.router.pushNamed(rLogin);
+            context.router.replaceAll([const SignInRoute()]);
           },
         );
       },

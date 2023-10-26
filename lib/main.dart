@@ -7,12 +7,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "XXX",
-      appId: "XXX",
+      apiKey: "AIzaSyD6idmppXISrgq1aoWj88I-B_J7Brnyxx4",
+      appId: "1:208450225674:android:e30c0b4e71829489ea81f3",
       messagingSenderId: "XXX",
-      projectId: "XXX",
+      projectId: "enjoynt-5d8a4",
     ),
   );
+
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+
+  // await Firebase.initializeApp();
   await configureDependencies();
   runApp(AppWidget());
 }

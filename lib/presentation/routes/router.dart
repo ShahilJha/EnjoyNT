@@ -33,7 +33,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rSplash, page: SplashRoute.page, initial: true),
         AutoRoute(path: rLogin, page: SignInRoute.page),
         AutoRoute(path: rRegister, page: SignUpRoute.page),
-        // AutoRoute(path: rHome, page: HomeRoute.page),
+        AutoRoute(path: rHome, page: HomeRoute.page),
         //todo: use pushNamed
         AutoRoute(path: rCategoryList, page: CategoryListRoute.page),
         //todo: use pushNamed

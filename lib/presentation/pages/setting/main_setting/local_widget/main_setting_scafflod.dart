@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:config/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../application/auth/auth_bloc.dart';
 import '../../../../routes/router.dart';
 import '../../../../widgets/app_button.dart';
 import '../../local_widgets/setting_tile.dart';
@@ -87,7 +89,9 @@ class MainSettingScaffold extends StatelessWidget {
                 textString: 'Logout',
                 margin: const EdgeInsets.all(0),
                 color: kLogoutButtonColor,
-                onPressed: () {},
+                onPressed: () {
+                  context.read<AuthBloc>().add(const AuthEvent.signOut());
+                },
               ),
             ],
           ),

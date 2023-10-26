@@ -41,7 +41,7 @@ class SignUpPageScaffold extends StatelessWidget {
             //in Unit
             (_) {
               //Navigation -> pop page to login when registered
-              // getIt<Utilities>().removeHistoryAndPop(context);
+              getIt<Utilities>().removeHistoryAndPop(context);
               //making the auth state in the AuthBloc as _authenticated_
               context
                   .read<AuthBloc>()

@@ -38,14 +38,18 @@ class FirebaseAuthFacade implements IAuthFacade {
     required Password password,
     required Password rePassword,
   }) async {
+    print('\n \n ^^^^^^^^^^^ check #1 \n \n ');
     final emailAdressStr = emailAddress.getOrCrash();
     final passwordStr = password.getOrCrash();
     final rePasswordStr = rePassword.getOrCrash();
 
+    print('\n \n ^^^^^^^^^^^ check #2 \n \n ');
+
     if (passwordStr != rePasswordStr) {
+      print('\n \n ^^^^^^^^^^^ check #2.5 \n \n ');
       return left(const AuthFailure.passwordsNotSame());
     }
-
+    print('\n \n ^^^^^^^^^^^ check #3 \n \n ');
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
         email: emailAdressStr,

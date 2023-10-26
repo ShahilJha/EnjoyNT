@@ -55,24 +55,27 @@ class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
     on<RegisterWithEmailAndPasswordPressed>((event, emit) async {
       Either<AuthFailure, Unit>? failureOrSuccess;
 
+      print('****** RegisterWithEmailAndPasswordPressed #1');
       final isEmailValid = state.emailAddress.isValid();
       final isPasswordValid = state.password.isValid();
+      print('****** RegisterWithEmailAndPasswordPressed #2');
 
       if (isEmailValid && isPasswordValid) {
+        print('****** RegisterWithEmailAndPasswordPressed #3');
         emit(
           state.copyWith(
             isSubmitting: true,
             authFailureOrSuccessOption: none(),
           ),
         );
-
+        print('****** RegisterWithEmailAndPasswordPressed #4');
         failureOrSuccess = await _authFacade.registerWithEmailAndPassword(
           emailAddress: state.emailAddress,
           password: state.password,
           rePassword: state.rePassword,
         );
       }
-
+      print('****** RegisterWithEmailAndPasswordPressed #5');
       emit(
         state.copyWith(
           isSubmitting: false,
