@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 class ItemTile extends StatelessWidget {
   final String imageUrl;
   final String title;
-  final String routeLink;
+  final VoidCallback onTap;
   final Color altImageColor;
 
   const ItemTile({
     super.key,
     required this.imageUrl,
     required this.title,
-    required this.routeLink,
     this.altImageColor = kLogoutButtonColor,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.router.pushNamed(routeLink),
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(right: 15),
         child: Column(
@@ -44,22 +44,29 @@ class ItemTile extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Image.asset(
-                      imageUrl,
-                      height: 120.0,
-                      width: 221.0,
-                      fit: BoxFit.cover,
+                  : ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      child: Image.network(
+                        imageUrl,
+                        height: 120.0,
+                        width: 221.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
             ),
             const SizedBox(height: 10),
-            Text(
-              title,
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+            SizedBox(
+              width: 221.0,
+              child: Text(
+                title,
+                textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
           ],

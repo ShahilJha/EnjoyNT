@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enjoy_nt/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -104,68 +105,88 @@ class HomePageContent extends StatelessWidget {
           ),
           ListContentTemplate(
             title: 'Popular Destination',
-            onTap: () {},
+            onTap: () => context.router.pushNamed(rDestinationListPage),
             child: SizedBox(
               height: 155,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                ],
-              ),
+              child: StreamBuilder(
+                  stream: getIt<FirebaseFirestore>()
+                      .collection('destination')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.size,
+                      itemBuilder: (context, index) {
+                        // final data = _tileData[index];
+                        // <DocumentSnapshot> items = snapshot.data?.documents;
+                        final data = snapshot.data?.docs[index].data();
+                        return ItemTile(
+                          imageUrl: data?["destination_image"],
+                          title: data?["destination_name"],
+                          onTap: () {},
+                        );
+                      },
+                    );
+                  }),
             ),
           ),
           ListContentTemplate(
             title: 'Popular Events',
-            onTap: () {},
+            onTap: () => context.router.pushNamed(rEventListPage),
             child: SizedBox(
               height: 155,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                ],
-              ),
+              child: StreamBuilder(
+                  stream: getIt<FirebaseFirestore>()
+                      .collection('events')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.size,
+                      itemBuilder: (context, index) {
+                        // final data = _tileData[index];
+                        // <DocumentSnapshot> items = snapshot.data?.documents;
+                        final data = snapshot.data?.docs[index].data();
+                        return ItemTile(
+                          imageUrl: data?["image"],
+                          title: data?["event_name"],
+                          onTap: () {},
+                        );
+                      },
+                    );
+                  }),
             ),
           ),
           ListContentTemplate(
             title: 'Jobs Available',
-            onTap: () {},
+            onTap: () => context.router.pushNamed(rJobListPage),
             child: SizedBox(
               height: 155,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: const [
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                  ItemTile(
-                    imageUrl: '',
-                    title: 'Title',
-                    routeLink: '',
-                  ),
-                ],
-              ),
+              child: StreamBuilder(
+                  stream:
+                      getIt<FirebaseFirestore>().collection('jobs').snapshots(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.size,
+                      itemBuilder: (context, index) {
+                        // final data = _tileData[index];
+                        // <DocumentSnapshot> items = snapshot.data?.documents;
+                        final data = snapshot.data?.docs[index].data();
+                        return ItemTile(
+                          imageUrl: data?["job_image"],
+                          title: data?["job_title"],
+                          onTap: () {},
+                        );
+                      },
+                    );
+                  }),
             ),
           ),
         ],
