@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:enjoy_nt/injection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,29 +72,30 @@ class HomePageContent extends StatelessWidget {
           ListContentTemplate(
             title: 'Categories',
             onTap: onTap,
-            child: const SizedBox(
+            child: SizedBox(
               height: 100,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CategoryRoundTile(
                     title: 'Jobs',
-                    routeLink: rJobListPage,
+                    onTap: () => context.router.pushNamed(rJobListPage),
                     imageUrl: 'assets/icons/jobs.png',
                   ),
                   CategoryRoundTile(
                     title: 'Organization',
-                    routeLink: rOraganizationListPage,
+                    onTap: () =>
+                        context.router.pushNamed(rOraganizationListPage),
                     imageUrl: 'assets/icons/markets.png',
                   ),
                   CategoryRoundTile(
                     title: 'Destination',
-                    routeLink: rDestinationListPage,
+                    onTap: () => context.router.pushNamed(rDestinationListPage),
                     imageUrl: 'assets/icons/tours.png',
                   ),
                   CategoryRoundTile(
                     title: 'Events',
-                    routeLink: rEventListPage,
+                    onTap: () => context.router.pushNamed(rEventListPage),
                     imageUrl: 'assets/icons/events.png',
                   ),
                 ],

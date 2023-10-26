@@ -90,7 +90,7 @@ class EventListScaffold extends StatelessWidget {
                             subTitle:
                                 'Entry cost: \$${data?["event_entry_cost"]}',
                             detail: data?["event_location"],
-                            imageLink: data?["event_image"],
+                            imageLink: data?["image"],
                             bookmarked: false,
                             onTap: () {},
                           );

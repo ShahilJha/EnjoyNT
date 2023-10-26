@@ -15,6 +15,7 @@ const rPrivacyPolicy = '/privacyPolicy';
 const rOnBoarding = '/onBoarding';
 const rItemDetailPage = '/itemdetail';
 const rJobListPage = '/jobListPage';
+const rHotelListPage = '/hotelListPage';
 const rEventListPage = '/eventListPage';
 const rDestinationListPage = '/destinationListPage';
 const rOraganizationListPage = '/organizationListPage';
@@ -39,6 +40,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: rOnBoarding, page: OnBoardingRoute.page),
         AutoRoute(path: rHome, page: HomeRoute.page),
         AutoRoute(path: rJobListPage, page: JobListRoute.page),
+        AutoRoute(path: rHotelListPage, page: HotelListRoute.page),
         AutoRoute(path: rEventListPage, page: EventListRoute.page),
         AutoRoute(path: rDestinationListPage, page: DestinationListRoute.page),
         AutoRoute(

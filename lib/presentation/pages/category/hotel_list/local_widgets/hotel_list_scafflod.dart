@@ -85,10 +85,10 @@ class HotelListScaffold extends StatelessWidget {
                           // <DocumentSnapshot> items = snapshot.data?.documents;
                           final data = snapshot.data?.docs[index].data();
                           return AppDefaultTile(
-                            title: data?["event_name"],
+                            title: data?["hotel_name"],
                             subTitle: 'Hotel cost: \$${data?["hotel_price"]}',
                             detail: data?["hotel_location"],
-                            imageLink: data?["hotel_room_photo"],
+                            imageLink: data?["hotel_room_photo"][0],
                             bookmarked: false,
                             onTap: () {},
                           );

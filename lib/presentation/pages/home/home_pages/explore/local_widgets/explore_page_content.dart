@@ -1,3 +1,7 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:enjoy_nt/injection.dart';
+import 'package:enjoy_nt/presentation/routes/router.dart';
+import 'package:enjoy_nt/presentation/utils/utilities.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../widgets/category_round_tile.dart';
@@ -8,28 +12,33 @@ class ExplorePageContent extends StatelessWidget {
   final List _tileData = [
     {
       'title': 'Jobs',
-      'routeLink': '',
+      'routeLink': rJobListPage,
       'imageUrl': 'assets/icons/jobs.png',
+    },
+    {
+      'title': 'Organization',
+      'routeLink': rOraganizationListPage,
+      'imageUrl': 'assets/icons/markets.png',
+    },
+    {
+      'title': 'Destination',
+      'routeLink': rDestinationListPage,
+      'imageUrl': 'assets/icons/tours.png',
+    },
+    {
+      'title': 'Events',
+      'routeLink': rEventListPage,
+      'imageUrl': 'assets/icons/events.png',
+    },
+    {
+      'title': 'Hotels',
+      'routeLink': rHotelListPage,
+      'imageUrl': 'assets/icons/hotels.png',
     },
     {
       'title': 'Food',
       'routeLink': '',
       'imageUrl': 'assets/icons/food.png',
-    },
-    {
-      'title': 'Tours',
-      'routeLink': '',
-      'imageUrl': 'assets/icons/tours.png',
-    },
-    {
-      'title': 'Events',
-      'routeLink': '',
-      'imageUrl': 'assets/icons/events.png',
-    },
-    {
-      'title': 'Hotels',
-      'routeLink': '',
-      'imageUrl': 'assets/icons/hotels.png',
     },
     {
       'title': 'Bus',
@@ -50,11 +59,6 @@ class ExplorePageContent extends StatelessWidget {
       'title': 'Bars',
       'routeLink': '',
       'imageUrl': 'assets/icons/bars.png',
-    },
-    {
-      'title': 'Markets',
-      'routeLink': '',
-      'imageUrl': 'assets/icons/markets.png',
     },
     {
       'title': 'ATMs',
@@ -124,7 +128,15 @@ class ExplorePageContent extends StatelessWidget {
                 final data = _tileData[index];
                 return CategoryRoundTile(
                   title: data['title'],
-                  routeLink: data['routeLink'],
+                  onTap: () {
+                    if (data['routeLink'] == '') {
+                      getIt<Utilities>()
+                          .showSnackBar(text: 'In Development...');
+                    } else {
+                      context.router.pushNamed(data['routeLink']);
+                    }
+                  },
+                  // routeLink: data['routeLink'],
                   imageUrl: data['imageUrl'],
                 );
               },

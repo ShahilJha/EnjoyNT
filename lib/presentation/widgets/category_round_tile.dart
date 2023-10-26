@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 class CategoryRoundTile extends StatelessWidget {
   final String imageUrl;
   final String title;
-  final String routeLink;
+  final VoidCallback onTap;
 
   const CategoryRoundTile({
     super.key,
     required this.imageUrl,
     required this.title,
-    required this.routeLink,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.router.pushNamed(routeLink),
+      onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
